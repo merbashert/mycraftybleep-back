@@ -1,5 +1,5 @@
 <?php
-$dbconn = pg_connect('host=localhost dblength=contacts');
+$dbconn = pg_connect('host=localhost dblength=crafts');
 
 class Fabric {
     public $id;
