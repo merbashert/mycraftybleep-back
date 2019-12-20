@@ -1,5 +1,24 @@
 <?php
-$dbconn = pg_connect('host=localhost dbname=crafts');
+// $dbconn = pg_connect('host=localhost dbname=crafts');
+
+$dbconn = null;
+if(getenv('DATABASE_URL')){
+    $connectionConfig = parse_url(getenv('DATABASE_URL'));
+    $host = $connectionConfig['host'];
+    $user = $connectionConfig['user'];
+    $password = $connectionConfig['pass'];
+    $port = $connectionConfig['port'];
+    $dbname = trim($connectionConfig['path'],'/');
+    $dbconn = pg_connect(
+        "host=".$host." ".
+        "user=".$user." ".
+        "password=".$password." ".
+        "port=".$port." ".
+        "dbname=".$dbname
+    );
+} else {
+    $dbconn = pg_connect("host=localhost dbname=crafts");
+}
 
 class Fabric {
     public $id;
@@ -17,7 +36,6 @@ class Fabric {
 }
 
 class Fabrics {
-    //"factory class" - will run the CRUD functions
     static function create($fabric){
         $query = "INSERT INTO fabrics (length, tags, main_color, picture) VALUES ($1, $2, $3, $4)";
         $query_params = array($fabric->length, $fabric->tags, $fabric->main_color, $fabric->picture);

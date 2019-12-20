@@ -10,7 +10,7 @@ RewriteCond %{REQUEST_METHOD} ^GET$
 RewriteRule ^fabrics$ controllers/fabrics.php?action=index
 
 RewriteCond %{REQUEST_METHOD} ^POST$
-RewriteRule ^fabrics$ controllers/fabrics.php?action=post
+RewriteRule ^fabrics$ controllers/fabrics.php?action=create
 
 RewriteCond %{REQUEST_METHOD} ^PUT$
 RewriteRule ^fabrics/([0-9]+)$ controllers/fabrics.php?action=update&id=$1
