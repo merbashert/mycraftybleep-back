@@ -1,5 +1,5 @@
 <?php
-$dbconn = pg_connect('host=localhost dblength=crafts');
+$dbconn = pg_connect('host=localhost dbname=crafts');
 
 class Fabric {
     public $id;
@@ -7,7 +7,7 @@ class Fabric {
     public $tags;
     public $main_color;
     public $picture;
-    public function __construct($id, $length, $tags, $picture){
+    public function __construct($id, $length, $tags, $main_color, $picture){
         $this->id = $id;
         $this->length = $length;
         $this->tags = $tags;
