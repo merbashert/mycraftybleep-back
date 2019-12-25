@@ -59,7 +59,7 @@ class Fabrics {
     static function all(){
         $fabrics = array();
 
-        $results = pg_query("SELECT * FROM fabrics");
+        $results = pg_query("SELECT * FROM fabrics ORDER BY main_color ASC");
 
         $row_object = pg_fetch_object($results);
         while($row_object) {

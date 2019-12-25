@@ -17,3 +17,27 @@ RewriteRule ^fabrics/([0-9]+)$ controllers/fabrics.php?action=update&id=$1
 
 RewriteCond %{REQUEST_METHOD} ^DELETE$
 RewriteRule ^fabrics/([0-9]+)$ controllers/fabrics.php?action=delete&id=$1
+
+RewriteCond %{REQUEST_METHOD} ^GET$
+RewriteRule ^randoms$ controllers/randoms.php?action=index
+
+RewriteCond %{REQUEST_METHOD} ^POST$
+RewriteRule ^randoms$ controllers/randoms.php?action=create
+
+RewriteCond %{REQUEST_METHOD} ^PUT$
+RewriteRule ^randoms/([0-9]+)$ controllers/randoms.php?action=update&id=$1
+
+RewriteCond %{REQUEST_METHOD} ^DELETE$
+RewriteRule ^randoms/([0-9]+)$ controllers/randoms.php?action=delete&id=$1
+
+RewriteCond %{REQUEST_METHOD} ^GET$
+RewriteRule ^needles$ controllers/needles.php?action=index
+
+RewriteCond %{REQUEST_METHOD} ^POST$
+RewriteRule ^needles$ controllers/needles.php?action=create
+
+RewriteCond %{REQUEST_METHOD} ^PUT$
+RewriteRule ^needles/([0-9]+)$ controllers/needles.php?action=update&id=$1
+
+RewriteCond %{REQUEST_METHOD} ^DELETE$
+RewriteRule ^needles/([0-9]+)$ controllers/needles.php?action=delete&id=$1
