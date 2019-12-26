@@ -59,22 +59,58 @@ class Fabrics {
     static function all(){
         $fabrics = array();
 
-        $results = pg_query("SELECT * FROM fabrics ORDER BY main_color ASC");
+        $results = pg_query("SELECT * FROM fabrics
+            ORDER BY (
+                CASE main_color
+
+                WHEN 'red'
+                THEN 1
+
+                WHEN 'orange'
+                THEN 2
+
+                WHEN 'yellow'
+                THEN 3
+
+                WHEN 'green'
+                THEN 4
+
+                WHEN 'blue'
+                THEN 5
+
+                WHEN 'purple'
+                THEN 6
+
+                WHEN 'pink'
+                THEN 7
+
+                WHEN 'brown'
+                THEN 8
+
+                WHEN 'black'
+                THEN 9
+
+                WHEN 'white'
+                THEN 10
+
+                END
+            ) ASC"
+        );
 
         $row_object = pg_fetch_object($results);
         while($row_object) {
-            $new_fabric = new Fabric(
-                intval($row_object->id),
-                $row_object->length,
-                $row_object->tags,
-                $row_object->main_color,
-                $row_object->picture
-            );
-            $fabrics[] = $new_fabric;
+        $new_fabric = new Fabric(
+            intval($row_object->id),
+            $row_object->length,
+            $row_object->tags,
+            $row_object->main_color,
+            $row_object->picture
+        );
+        $fabrics[] = $new_fabric;
 
-            $row_object = pg_fetch_object($results);
+        $row_object = pg_fetch_object($results);
         }
         return $fabrics;
-    }
-}
-?>
+        }
+        }
+        ?>
