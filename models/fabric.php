@@ -94,7 +94,7 @@ class Fabrics {
                 THEN 10
 
                 END
-            ) ASC"
+            ) ASC, id ASC"
         );
 
         $row_object = pg_fetch_object($results);
