@@ -41,3 +41,15 @@ RewriteRule ^needles/([0-9]+)$ controllers/needles.php?action=update&id=$1
 
 RewriteCond %{REQUEST_METHOD} ^DELETE$
 RewriteRule ^needles/([0-9]+)$ controllers/needles.php?action=delete&id=$1
+
+RewriteCond %{REQUEST_METHOD} ^GET$
+RewriteRule ^zippers$ controllers/zippers.php?action=index
+
+RewriteCond %{REQUEST_METHOD} ^POST$
+RewriteRule ^zippers$ controllers/zippers.php?action=create
+
+RewriteCond %{REQUEST_METHOD} ^PUT$
+RewriteRule ^zippers/([0-9]+)$ controllers/zippers.php?action=update&id=$1
+
+RewriteCond %{REQUEST_METHOD} ^DELETE$
+RewriteRule ^zippers/([0-9]+)$ controllers/zippers.php?action=delete&id=$1

@@ -39,8 +39,8 @@ class Zippers {
         return self::all();
     }
     static function update($updated_zipper){
-        $query = "UPDATE zippers SET size = $1, color=$2";
-        $query_params = array($updated_zipper->size, $updated_zipper->color);
+        $query = "UPDATE zippers SET size = $1, color=$2 WHERE id=$3";
+        $query_params = array($updated_zipper->size, $updated_zipper->color, $updated_zipper->id);
         pg_query_params($query,$query_params);
 
         return self::all();
@@ -55,16 +55,16 @@ class Zippers {
     static function all(){
         $zippers = array();
 
-        $results = pg_query("SELECT * FROM zippers GROUP BY size");
+        $results = pg_query("SELECT * FROM zippers");
 
         $row_object = pg_fetch_object($results);
         while($row_object) {
-            $new_zipper = new Zipper(
+            $new_random = new Zipper(
                 intval($row_object->id),
                 intval($row_object->size),
                 $row_object->color
             );
-            $zippers[] = $new_zipper;
+            $zippers[] = $new_random;
 
             $row_object = pg_fetch_object($results);
         }
