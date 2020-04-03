@@ -55,7 +55,7 @@ class Zippers {
     static function all(){
         $zippers = array();
 
-        $results = pg_query("SELECT * FROM zippers");
+        $results = pg_query("SELECT * FROM zippers ORDER BY color");
 
         $row_object = pg_fetch_object($results);
         while($row_object) {
