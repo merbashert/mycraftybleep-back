@@ -23,7 +23,7 @@ if(getenv('DATABASE_URL')){
 class Fabric {
     public $id;
     public $length;
-    public $tags;
+    public $tags = array();
     public $main_color;
     public $picture;
     public function __construct($id, $length, $tags, $main_color, $picture){

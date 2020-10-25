@@ -57,7 +57,7 @@ class Randoms {
     static function all(){
         $randoms = array();
 
-        $results = pg_query("SELECT * FROM randoms ORDER BY box_number, name ASC");
+        $results = pg_query("SELECT * FROM randoms ORDER BY name ASC");
 
         $row_object = pg_fetch_object($results);
         while($row_object) {
