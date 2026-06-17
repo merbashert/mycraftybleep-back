@@ -1,24 +1,5 @@
 <?php
-// $dbconn = pg_connect('host=localhost dbname=crafts');
-
-$dbconn = null;
-if(getenv('DATABASE_URL')){
-        $connectionConfig = parse_url(getenv('DATABASE_URL'));
-    $host = "localhost"; //$connectionConfig['host'];
-    $user = "meredjt3_WPVUY"; //$connectionConfig['user'];
-    $password = "cowpoop81!"; // $connectionConfig['pass'];
-    $port = "5432"; //$connectionConfig['port'];
-    $dbname = "meredjt3_pg_mycraftybleep"; //trim($connectionConfig['path'],'/');
-    $dbconn = pg_connect(
-        "host=".$host." ".
-        "user=".$user." ".
-        "password=".$password." ".
-        "port=".$port." ".
-        "dbname=".$dbname
-    );
-} else {
-    $dbconn = pg_connect("host=localhost user=meredjt3_WPVUY password=cowpoop81! dbname=meredjt3_pg_mycraftybleep");
-}
+require_once __DIR__ . '/../config/database.php';
 
 
 class Fabric {
