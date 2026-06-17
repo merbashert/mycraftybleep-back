@@ -81,18 +81,18 @@ class Fabrics {
 
         $row_object = pg_fetch_object($results);
         while($row_object) {
-        $new_fabric = new Fabric(
-            intval($row_object->id),
-            $row_object->length,
-            $row_object->tags,
-            $row_object->main_color,
-            $row_object->picture
-        );
-        $fabrics[] = $new_fabric;
+            $new_fabric = new Fabric(
+                intval($row_object->id),
+                $row_object->length,
+                $row_object->tags,
+                $row_object->main_color,
+                $row_object->picture
+            );
+            $fabrics[] = $new_fabric;
 
-        $row_object = pg_fetch_object($results);
+            $row_object = pg_fetch_object($results);
         }
         return $fabrics;
-        }
-        }
-        ?>
+    }
+}
+?>
