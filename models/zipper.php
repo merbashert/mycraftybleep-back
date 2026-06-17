@@ -40,12 +40,12 @@ class Zippers {
 
         $row_object = pg_fetch_object($results);
         while($row_object) {
-            $new_random = new Zipper(
+            $new_zipper = new Zipper(
                 intval($row_object->id),
                 intval($row_object->size),
                 $row_object->color
             );
-            $zippers[] = $new_random;
+            $zippers[] = $new_zipper;
 
             $row_object = pg_fetch_object($results);
         }
