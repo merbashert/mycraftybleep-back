@@ -21,27 +21,27 @@ class Fabrics {
     static function create($fabric){
         $query = "INSERT INTO fabrics (length, tags, main_color, picture) VALUES ($1, $2, $3, $4)";
         $query_params = array($fabric->length, $fabric->tags, $fabric->main_color, $fabric->picture);
-        pg_query_params($query, $query_params);
+        runQueryParams($query, $query_params);
         return self::all();
     }
     static function update($updated_fabric){
         $query = "UPDATE fabrics SET length = $1, tags=$2, main_color=$3, picture=$4 WHERE id=$5";
         $query_params = array($updated_fabric->length, $updated_fabric->tags, $updated_fabric->main_color, $updated_fabric->picture, $updated_fabric->id);
-        pg_query_params($query,$query_params);
+        runQueryParams($query, $query_params);
 
         return self::all();
     }
     static function delete($id){
         $query = "DELETE FROM fabrics WHERE id = $1";
         $query_params = array($id);
-        pg_query_params($query, $query_params);
+        runQueryParams($query, $query_params);
 
         return self::all();
     }
     static function all(){
         $fabrics = array();
 
-        $results = pg_query("SELECT * FROM fabrics
+        $results = runQuery("SELECT * FROM fabrics
             ORDER BY (
                 CASE main_color
 

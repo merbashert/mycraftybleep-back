@@ -16,27 +16,27 @@ class Zippers {
     static function create($zipper){
         $query = "INSERT INTO zippers (size, color) VALUES ($1, $2)";
         $query_params = array($zipper->size, $zipper->color);
-        pg_query_params($query, $query_params);
+        runQueryParams($query, $query_params);
         return self::all();
     }
     static function update($updated_zipper){
         $query = "UPDATE zippers SET size = $1, color=$2 WHERE id=$3";
         $query_params = array($updated_zipper->size, $updated_zipper->color, $updated_zipper->id);
-        pg_query_params($query,$query_params);
+        runQueryParams($query, $query_params);
 
         return self::all();
     }
     static function delete($id){
         $query = "DELETE FROM zippers WHERE id = $1";
         $query_params = array($id);
-        pg_query_params($query, $query_params);
+        runQueryParams($query, $query_params);
 
         return self::all();
     }
     static function all(){
         $zippers = array();
 
-        $results = pg_query("SELECT * FROM zippers ORDER BY color");
+        $results = runQuery("SELECT * FROM zippers ORDER BY color");
 
         $row_object = pg_fetch_object($results);
         while($row_object) {

@@ -18,27 +18,27 @@ class Randoms {
     static function create($random){
         $query = "INSERT INTO randoms (name, details, box_number) VALUES ($1, $2, $3)";
         $query_params = array($random->name, $random->details, $random->box_number);
-        pg_query_params($query, $query_params);
+        runQueryParams($query, $query_params);
         return self::all();
     }
     static function update($updated_random){
         $query = "UPDATE randoms SET name = $1, details=$2, box_number=$3 WHERE id=$4";
         $query_params = array($updated_random->name, $updated_random->details, $updated_random->box_number, $updated_random->id);
-        pg_query_params($query,$query_params);
+        runQueryParams($query, $query_params);
 
         return self::all();
     }
     static function delete($id){
         $query = "DELETE FROM randoms WHERE id = $1";
         $query_params = array($id);
-        pg_query_params($query, $query_params);
+        runQueryParams($query, $query_params);
 
         return self::all();
     }
     static function all(){
         $randoms = array();
 
-        $results = pg_query("SELECT * FROM randoms ORDER BY name ASC");
+        $results = runQuery("SELECT * FROM randoms ORDER BY name ASC");
 
         $row_object = pg_fetch_object($results);
         while($row_object) {
