@@ -2,6 +2,12 @@
 
 $dbconn = pg_connect("host=localhost user=meredjt3_WPVUY password=cowpoop81! dbname=meredjt3_pg_mycraftybleep");
 
+if (!$dbconn) {
+    http_response_code(500);
+    echo json_encode(array("error" => "Database connection failed"));
+    exit;
+}
+
 function runQuery($query) {
     $result = pg_query($query);
 
