@@ -3,23 +3,26 @@
 require_once __DIR__ . '/../config/api.php';
 include_once __DIR__ . '/../models/needle.php';
 
+$action = getAction();
 
-if($_REQUEST['action'] === 'index'){
+if($action === 'index'){
     sendJson(Needles::all());
-} else if($_REQUEST['action'] === 'create') {
+} else if($action === 'create') {
     $body_object = getJsonBody();
     $new_needle = new Needle(null, $body_object->size, $body_object->straight, $body_object->circular, $body_object->doublepoint);
     $all_needles = Needles::create($new_needle);
 
     sendJson($all_needles);
-} else if($_REQUEST['action'] ==='update'){
+} else if($action ==='update'){
     $body_object = getJsonBody();
-    $updated_needle = new Needle($_REQUEST['id'], $body_object->size, $body_object->straight, $body_object->circular, $body_object->doublepoint);
+    $updated_needle = new Needle(getId(), $body_object->size, $body_object->straight, $body_object->circular, $body_object->doublepoint);
     $all_needles = Needles::update($updated_needle);
 
     sendJson($all_needles);
-} else if ($_REQUEST['action'] === 'delete'){
-    $all_needles = Needles::delete($_REQUEST['id']);
+} else if ($action === 'delete'){
+    $all_needles = Needles::delete(getId());
     sendJson($all_needles);
+} else {
+    sendError("Unknown action", 400);
 }
  ?>
