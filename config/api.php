@@ -4,7 +4,13 @@ header("Content-Type: application/json");
 
 function getJsonBody() {
     $request_body = file_get_contents('php://input');
-    return json_decode($request_body);
+    $body_object = json_decode($request_body);
+
+    if (!$body_object) {
+        sendError("Invalid JSON body", 400);
+    }
+
+    return $body_object;
 }
 
 function sendJson($data) {
@@ -25,6 +31,14 @@ function getId() {
     }
 
     return $_REQUEST['id'];
+}
+
+function getBodyValue($body_object, $fieldName) {
+    if (!isset($body_object->$fieldName)) {
+        sendError("Missing ".$fieldName, 400);
+    }
+
+    return $body_object->$fieldName;
 }
 
 function sendError($message, $statusCode) {

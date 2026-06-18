@@ -9,13 +9,13 @@ if($action === 'index'){
     sendJson(Zippers::all());
 } else if($action === 'create') {
     $body_object = getJsonBody();
-    $new_zipper = new Zipper(null, $body_object->size, $body_object->color);
+    $new_zipper = new Zipper(null, getBodyValue($body_object, 'size'), getBodyValue($body_object, 'color'));
     $all_zippers = Zippers::create($new_zipper);
 
     sendJson($all_zippers);
 } else if($action ==='update'){
     $body_object = getJsonBody();
-    $updated_zipper = new Zipper(getId(), $body_object->size, $body_object->color);
+    $updated_zipper = new Zipper(getId(), getBodyValue($body_object, 'size'), getBodyValue($body_object, 'color'));
     $all_zippers = Zippers::update($updated_zipper);
 
     sendJson($all_zippers);
